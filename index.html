@@ -347,30 +347,32 @@
 
   <!-- STATS -->
 
-  <section id="stats">
+<section id="stats">
 
-    <h2 class="title">Server Statistik</h2>
+  <h2 class="title">Server Statistik</h2>
 
-    <div class="stats">
+  <div class="stats">
 
-      <div class="stat">
-        <h2>20+</h2>
-        <p>Mitglieder</p>
-      </div>
-
-      <div class="stat">
-        <h2>24/7</h2>
-        <p>Aktivität</p>
-      </div>
-
-      <div class="stat">
-        <h2>1+</h2>
-        <p>Events</p>
-      </div>
-
+    <div class="stat">
+      <h2 id="memberCount">0</h2>
+      <p>Online Mitglieder</p>
     </div>
 
-  </section>
+    <div class="stat">
+      <h2 id="channelCount">0</h2>
+      <p>Kanäle</p>
+    </div>
+
+    <div class="stat">
+      <h2>24/7</h2>
+      <p>Aktivität</p>
+    </div>
+
+  </div>
+
+</section>
+
+
 
   <!-- FOOTER -->
 
@@ -387,28 +389,25 @@
   </footer>
 
 </body>
-</html>
 <script>
 
-async function loadStats(){
+async function loadDiscordStats(){
 
-  const response =
-    await fetch("http://localhost:3000/stats");
+  const response = await fetch(
+    "https://discord.com/api/guilds/1475761761176125535/widget.json"
+  );
 
   const data = await response.json();
 
   document.getElementById("memberCount").innerText =
-    data.members;
-
-  document.getElementById("onlineCount").innerText =
-    data.online;
+    data.presence_count;
 
   document.getElementById("channelCount").innerText =
-    data.channels;
+    data.channels.length;
 }
 
-loadStats();
-
-setInterval(loadStats, 30000);
+loadDiscordStats();
 
 </script>
+</html>
+<script>
