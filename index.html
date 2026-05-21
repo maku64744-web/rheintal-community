@@ -388,3 +388,27 @@
 
 </body>
 </html>
+<script>
+
+async function loadStats(){
+
+  const response =
+    await fetch("http://localhost:3000/stats");
+
+  const data = await response.json();
+
+  document.getElementById("memberCount").innerText =
+    data.members;
+
+  document.getElementById("onlineCount").innerText =
+    data.online;
+
+  document.getElementById("channelCount").innerText =
+    data.channels;
+}
+
+loadStats();
+
+setInterval(loadStats, 30000);
+
+</script>
