@@ -377,12 +377,12 @@
   <div class="stats">
 
     <div class="stat">
-      <h2 id="memberCount">0</h2>
-      <p>Online Mitglieder</p>
+      <h2>20+</h2>
+      <p>Mitglieder</p>
     </div>
 
     <div class="stat">
-      <h2 id="channelCount">0</h2>
+      <h2>21</h2>
       <p>Kanäle</p>
     </div>
 
@@ -412,24 +412,4 @@
   </footer>
 
 </body>
-<script>
-
-async function loadDiscordStats() {
-
-  const response = await fetch('/stats');
-  const data = await response.json();
-
-  const memberEl = document.getElementById('memberCount');
-  const channelEl = document.getElementById('channelCount');
-
-  // Prefer explicit online count, fall back to members if unavailable
-  if (memberEl) memberEl.innerText = (data.online ?? data.members ?? '—');
-  if (channelEl) channelEl.innerText = (data.channels ?? '—');
-}
-
-loadDiscordStats();
-
-setInterval(loadDiscordStats, 30000);
-
-</script>
 </html>
