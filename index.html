@@ -416,15 +416,15 @@
 
 async function loadDiscordStats() {
 
-  const response = await fetch("http://localhost:3000/stats");
-
+  const response = await fetch('/stats');
   const data = await response.json();
 
-  document.getElementById("memberCount").innerText =
-    data.members;
+  const memberEl = document.getElementById('memberCount');
+  const channelEl = document.getElementById('channelCount');
 
-  document.getElementById("channelCount").innerText =
-    data.channels;
+  // Prefer explicit online count, fall back to members if unavailable
+  if (memberEl) memberEl.innerText = (data.online ?? data.members ?? '—');
+  if (channelEl) channelEl.innerText = (data.channels ?? '—');
 }
 
 loadDiscordStats();
