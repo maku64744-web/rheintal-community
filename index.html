@@ -100,7 +100,7 @@
 
       background:
       linear-gradient(rgba(15,23,42,0.75),rgba(15,23,42,0.85)),
-      url('https://media.discordapp.net/attachments/1475772740693921792/1504945404704194611/ChatGPT_Image_15._Mai_2026_22_35_26.png?ex=6a101561&is=6a0ec3e1&hm=81d594584c626f220d0ac85c35d71956ac5bd1852d8451c9dc64d668fd1349cf&=&format=webp&quality=lossless&width=1380&height=920');
+      url('https://cdn.discordapp.com/attachments/1475912258419822704/1507321929432825926/image.png?ex=6a117a70&is=6a1028f0&hm=0c94fe7418ed59462fcd5e13b4bbdec049c17afa45274ddfc724cb78718d42a6');
 
       background-size:cover;
       background-position:center;
@@ -138,6 +138,14 @@
 
     section{
       padding:90px 10%;
+    }
+
+    .hidden{
+      display:none !important;
+    }
+
+    .active-link{
+      color:#60a5fa;
     }
 
     .title{
@@ -266,10 +274,10 @@
     <div class="logo">Rheintal Community</div>
 
     <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#about">Über Uns</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#stats">Stats</a></li>
+      <li><a href="#" data-target="home">Home</a></li>
+      <li><a href="#" data-target="about">Über Uns</a></li>
+      <li><a href="#" data-target="events">Events</a></li>
+      <li><a href="#" data-target="stats">Stats</a></li>
     </ul>
   </nav>
 
@@ -328,7 +336,7 @@
 
   <!-- EVENTS -->
 
-  <section id="events">
+  <section id="events" class="hidden">
 
     <h2 class="title">Kommende Events</h2>
 
@@ -370,7 +378,7 @@
 
   <!-- STATS -->
 
-<section id="stats">
+<section id="stats" class="hidden">
 
   <h2 class="title">Server Statistik</h2>
 
@@ -411,5 +419,43 @@
 
   </footer>
 
+  <script>
+    const navLinks = document.querySelectorAll('nav ul li a[data-target]');
+    const sections = {
+      home: document.querySelector('header'),
+      about: document.getElementById('about'),
+      events: document.getElementById('events'),
+      stats: document.getElementById('stats')
+    };
+
+    function setActive(target) {
+      Object.entries(sections).forEach(([key, element]) => {
+        if (!element) return;
+        if (key === target) {
+          element.classList.remove('hidden');
+        } else {
+          element.classList.add('hidden');
+        }
+      });
+
+      navLinks.forEach(link => {
+        if (link.dataset.target === target) {
+          link.classList.add('active-link');
+        } else {
+          link.classList.remove('active-link');
+        }
+      });
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        const target = event.currentTarget.dataset.target;
+        setActive(target);
+      });
+    });
+
+    setActive('home');
+  </script>
 </body>
 </html>
