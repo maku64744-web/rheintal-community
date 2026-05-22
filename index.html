@@ -16,6 +16,27 @@
       font-family:'Poppins',sans-serif;
     }
 
+    .skip-link{
+      position:absolute;
+      left:-999px;
+      top:auto;
+      width:1px;
+      height:1px;
+      overflow:hidden;
+    }
+
+    .skip-link:focus{
+      position:static;
+      left:auto;
+      width:auto;
+      height:auto;
+      padding:10px 14px;
+      background:#fff;
+      color:#000;
+      border-radius:6px;
+      z-index:1001;
+    }
+
     html{
       scroll-behavior:smooth;
     }
@@ -237,9 +258,11 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
   <!-- NAVBAR -->
 
-  <nav>
+  <nav role="navigation" aria-label="Hauptnavigation">
     <div class="logo">Rheintal Community</div>
 
     <ul>
@@ -252,13 +275,13 @@
 
   <!-- HEADER -->
 
-  <header>
+  <header id="main">
 
     <h1>Rheintal Community</h1>
 
     <p>Gaming • Community • Events • Spaß</p>
 
-    <a class="btn" href="https://discord.gg/jkMBWFhy">
+    <a class="btn" href="https://discord.gg/jkMBWFhy" target="_blank" rel="noopener noreferrer">
       Discord beitreten
     </a>
 
@@ -382,32 +405,31 @@
 
     <br><br>
 
-    <a href="https://discord.gg/jkMBWFhy">Discord</a>
-    <a href="https://www.tiktok.com/@rheintal.community">TikTok</a>
-    <a href="https://www.youtube.com/channel/UC9IMmxymrY82NKuomDN58EQ">YouTube</a>
+    <a href="https://discord.gg/jkMBWFhy" target="_blank" rel="noopener noreferrer">Discord</a>
+    <a href="https://www.tiktok.com/@rheintal.community" target="_blank" rel="noopener noreferrer">TikTok</a>
+    <a href="https://www.youtube.com/channel/UC9IMmxymrY82NKuomDN58EQ" target="_blank" rel="noopener noreferrer">YouTube</a>
 
   </footer>
 
 </body>
 <script>
 
-async function loadDiscordStats(){
+async function loadDiscordStats() {
 
-  const response = await fetch(
-    "https://discord.com/api/guilds/1475761761176125535/widget.json"
-  );
+  const response = await fetch("http://localhost:3000/stats");
 
   const data = await response.json();
 
   document.getElementById("memberCount").innerText =
-    data.presence_count;
+    data.members;
 
   document.getElementById("channelCount").innerText =
-    data.channels.length;
+    data.channels;
 }
 
 loadDiscordStats();
 
+setInterval(loadDiscordStats, 30000);
+
 </script>
 </html>
-<script>
