@@ -269,18 +269,38 @@
     footer p{
       color:#6b7280;
       font-size:14px;
+      margin-bottom:18px;
     }
 
-    footer a{
+    .social-links{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .social-link{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
       color:#3b82f6;
       text-decoration:none;
-      margin:0 12px;
-      transition:0.3s;
       font-size:14px;
+      font-weight:600;
+      transition:0.2s;
     }
 
-    footer a:hover{
-      color:#1a1a1a;
+    .social-link:hover{
+      color:#1d4ed8;
+    }
+
+    .social-icon{
+      width:20px;
+      height:20px;
+      display:inline-block;
+      fill:currentColor;
     }
 
     /* MOBILE */
@@ -456,11 +476,26 @@
 
     <p>© 2026 Rheintal Community</p>
 
-    <br><br>
-
-    <a href="https://discord.gg/jkMBWFhy" target="_blank" rel="noopener noreferrer">Discord</a>
-    <a href="https://www.tiktok.com/@rheintal.community" target="_blank" rel="noopener noreferrer">TikTok</a>
-    <a href="https://www.youtube.com/channel/UC9IMmxymrY82NKuomDN58EQ" target="_blank" rel="noopener noreferrer">YouTube</a>
+    <div class="social-links">
+      <a class="social-link" href="https://discord.gg/jkMBWFhy" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.317 4.369A19.791 19.791 0 0016.006 3a14.012 14.012 0 00-.696 1.423 18.928 18.928 0 00-5.17 0A14.01 14.01 0 009.444 3 19.787 19.787 0 004.731 4.37 22.849 22.849 0 002 16.812a20.257 20.257 0 005.993 3.03 14.778 14.778 0 001.072-1.747 13.722 13.722 0 01-2.063-.983c.173-.127.343-.257.51-.392a14.15 14.15 0 0013.09 0c.17.136.342.268.517.395a13.742 13.742 0 01-2.064.985c.299.615.65 1.204 1.072 1.747A20.255 20.255 0 0022 16.814a22.849 22.849 0 00-1.683-12.445zm-11.5 9.39c-.88 0-1.61-.8-1.61-1.78s.72-1.78 1.61-1.78c.89 0 1.61.8 1.61 1.78s-.72 1.78-1.61 1.78zm7.17 0c-.88 0-1.61-.8-1.61-1.78s.72-1.78 1.61-1.78c.89 0 1.61.8 1.61 1.78s-.72 1.78-1.61 1.78z"/>
+        </svg>
+        Discord
+      </a>
+      <a class="social-link" href="https://www.tiktok.com/@rheintalcommunity?lang=de-DE" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16.2 3.3h2.4v4.2c0 2.25 1.5 3.6 4.2 3.6v2.6c-3.3 0-6.6-1.95-6.6-6.2V3.3zm-4.4 1.5c.1 1.9.1 7.4 0 9.2-.1 2.9-1.8 4.9-4.8 4.9C4.1 19.9 2 17.9 2 15.2s2.1-4.7 4.8-4.7c1.3 0 2.4.4 3.2 1.1V4.8h2.2v0z"/>
+        </svg>
+        TikTok
+      </a>
+      <a class="social-link" href="https://www.youtube.com/channel/UC9IMmxymrY82NKuomDN58EQ" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M23.5 6.25s-.24-1.7-.98-2.44c-.94-.98-2-1-2.49-1.05C16.9 2.5 12 2.5 12 2.5h-.01s-4.9 0-7.99.26c-.49.05-1.55.07-2.49 1.05C.74 4.55.5 6.25.5 6.25S.25 8.16.25 10.06v1.88c0 1.9.25 3.81.25 3.81s.24 1.7.98 2.44c.94.98 2 1 2.49 1.05 3.09.26 7.99.26 7.99.26s4.9 0 7.99-.26c.49-.05 1.55-.07 2.49-1.05.74-.74.98-2.44.98-2.44s.25-1.91.25-3.81v-1.88c0-1.9-.25-3.81-.25-3.81zM9.75 15.02V8.98l5.98 3.02-5.98 3.02z"/>
+        </svg>
+        YouTube
+      </a>
+    </div>
 
   </footer>
 
