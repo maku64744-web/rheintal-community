@@ -68,6 +68,7 @@
       font-weight:600;
       color:#3b82f6;
       text-shadow:none;
+      text-decoration:none;
     }
 
     nav ul{
@@ -400,7 +401,7 @@
   <!-- NAVBAR -->
 
   <nav role="navigation" aria-label="Hauptnavigation">
-    <a class="logo" href="#" data-target="home">Rheintal Community</a>
+    <a class="logo" href="index.html">Rheintal Community</a>
 
     <ul>
       <li><a href="#" data-target="home">Home</a></li>
@@ -588,7 +589,7 @@
   </footer>
 
   <script>
-    const navLinks = document.querySelectorAll('nav a[data-target]');
+    const navLinks = document.querySelectorAll('nav ul li a[data-target]');
     const sections = {
       home: document.querySelector('header'),
       about: document.getElementById('about'),
