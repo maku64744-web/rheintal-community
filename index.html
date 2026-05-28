@@ -635,7 +635,13 @@
       link.addEventListener('click', event => {
         event.preventDefault();
         const target = event.currentTarget.dataset.target;
-        setActive(target);
+        // Update URL based on navigation target
+        if (target === 'events') {
+          window.history.pushState(null, null, '?event=');
+        } else {
+          window.history.pushState(null, null, 'index.html');
+        }
+        checkUrlParams();
       });
     });
 
