@@ -674,13 +674,17 @@
         setActive('events');
         eventDetailsSection.classList.remove('hidden');
         setTimeout(() => eventDetailsSection.scrollIntoView({ behavior: 'smooth' }), 100);
+      } else if (eventParam === '') {
+        setActive('events');
+        eventDetailsSection.classList.add('hidden');
+      } else {
+        // No event parameter, show home
+        setActive('home');
       }
     }
 
     checkUrlParams();
     window.addEventListener('popstate', checkUrlParams);
-
-    setActive('home');
   </script>
 </body>
 </html>
