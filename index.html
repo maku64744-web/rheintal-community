@@ -671,9 +671,13 @@
         detailTitle.textContent = detail.title;
         detailDate.textContent = detail.date;
         detailDescription.textContent = detail.description;
-        setActive('events');
+        // Hide all sections except event details
+        Object.values(sections).forEach(section => {
+          if (section) section.classList.add('hidden');
+        });
+        navLinks.forEach(link => link.classList.remove('active-link'));
         eventDetailsSection.classList.remove('hidden');
-        setTimeout(() => eventDetailsSection.scrollIntoView({ behavior: 'smooth' }), 100);
+        setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50);
       } else if (eventParam === '') {
         setActive('events');
         eventDetailsSection.classList.add('hidden');
