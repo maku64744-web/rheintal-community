@@ -636,10 +636,12 @@
         event.preventDefault();
         const target = event.currentTarget.dataset.target;
         // Update URL based on navigation target
-        if (target === 'events') {
+        if (target === 'home') {
+          window.history.pushState(null, null, 'index.html');
+        } else if (target === 'events') {
           window.history.pushState(null, null, '?event=');
         } else {
-          window.history.pushState(null, null, 'index.html');
+          window.history.pushState(null, null, '?section=' + target);
         }
         checkUrlParams();
       });
@@ -672,6 +674,8 @@
     function checkUrlParams() {
       const params = new URLSearchParams(window.location.search);
       const eventParam = params.get('event');
+      const sectionParam = params.get('section');
+      
       if (eventParam && eventData[eventParam]) {
         const detail = eventData[eventParam];
         detailTitle.textContent = detail.title;
@@ -687,6 +691,8 @@
       } else if (eventParam === '') {
         setActive('events');
         eventDetailsSection.classList.add('hidden');
+      } else if (sectionParam) {
+        setActive(sectionParam);
       } else {
         // No event parameter, show home
         setActive('home');
