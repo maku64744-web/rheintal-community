@@ -492,7 +492,7 @@
           Gemeinsam kämpfen und Preise gewinnen.
         </p>
 
-        <a class="event-button" href="#event-details" data-event="brawl">
+        <a class="event-button" href="?event=brawl">
           Mehr erfahren
         </a>
       </div>
@@ -506,7 +506,7 @@
           Zeige dein Können gegen andere Spieler.
         </p>
 
-        <a class="event-button" href="#event-details" data-event="valorant">
+        <a class="event-button" href="?event=valorant">
           Mehr erfahren
         </a>
       </div>
@@ -520,7 +520,7 @@
           Chillen, reden und Spaß haben im Voice Chat.
         </p>
 
-        <a class="event-button" href="#event-details" data-event="community">
+        <a class="event-button" href="?event=community">
           Mehr erfahren
         </a>
       </div>
@@ -537,7 +537,7 @@
       <p id="detail-description">
         Hier findest du die Details zum ausgewählten Event.
       </p>
-      <a class="back-link" href="#events">Zurück zu Events</a>
+      <a class="back-link" href="?event=">Zurück zu Events</a>
     </div>
   </section>
 
@@ -663,27 +663,22 @@
       }
     };
 
-    eventButtons.forEach(button => {
-      button.addEventListener('click', event => {
-        event.preventDefault();
-        const chosen = button.dataset.event;
-        const detail = eventData[chosen];
-        if (!detail) return;
+    function checkUrlParams() {
+      const params = new URLSearchParams(window.location.search);
+      const eventParam = params.get('event');
+      if (eventParam && eventData[eventParam]) {
+        const detail = eventData[eventParam];
         detailTitle.textContent = detail.title;
         detailDate.textContent = detail.date;
         detailDescription.textContent = detail.description;
+        setActive('events');
         eventDetailsSection.classList.remove('hidden');
-        eventDetailsSection.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-
-    if (backLink) {
-      backLink.addEventListener('click', event => {
-        event.preventDefault();
-        eventDetailsSection.classList.add('hidden');
-        document.getElementById('events').scrollIntoView({ behavior: 'smooth' });
-      });
+        setTimeout(() => eventDetailsSection.scrollIntoView({ behavior: 'smooth' }), 100);
+      }
     }
+
+    checkUrlParams();
+    window.addEventListener('popstate', checkUrlParams);
 
     setActive('home');
   </script>
